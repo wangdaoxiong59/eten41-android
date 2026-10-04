@@ -14,13 +14,31 @@
 - 單字支援聲調：`1=˙ 2=ˊ 3=ˇ 4=ˋ`（一聲不標），例：`ge4`=記
 - 約 74 萬詞條，繁體中文詞庫（源自 libchewing-data，LGPL-2.1-or-later）
 
+## 下載現成碼表
+
+不想自己轉碼的話，直接下載打包好的 v0.6
+（含 `eten26.conf`＋`eten26.txt`＋Rime 版＋攻略篇）：
+
+[Google Drive：倚天41鍵輸入法 v0.6](https://drive.google.com/drive/folders/1HbJ_24qfa2JYnSGtk6xMMkkDMj2XfE8c)
+
 ## 安裝（小企鵝輸入法碼表版，推薦）
 
 1. Play 商店安裝「Fcitx5 for Android」（搜英文 **Fcitx5**）。
-2. 下載 `fcitx5/eten26.conf` 和 `fcitx5/eten26.txt` 傳到手機。
+2. 下載 `eten26.conf` 和 `eten26.txt` 傳到手機（見上方 Drive 連結）。
 3. 小企鵝 App → 附加元件 → 碼表右側齒輪 → 管理碼表輸入法 → `+` 匯入兩檔。
 4. 首頁 → 輸入法 → `+` → 加入「倚天26鍵」。
 5. 系統設定 → 語言與輸入 → 啟用小企鵝並設為預設。
+
+## 自行轉碼
+
+碼表本體（`eten26.txt`、`eten26.dict.yaml`）由 `src/convert.py`
+從 libchewing 詞庫生成；13MB 的生成檔不進 git，有需要自己跑：
+
+```bash
+# 先取得 libchewing-data 的 tsi.csv 與 word.csv
+python3 src/convert.py tsi.csv word.csv
+# 產生 eten26.dict.yaml（Rime 用）與 eten26.txt（小企鵝碼表用）
+```
 
 ## 打法範例
 
