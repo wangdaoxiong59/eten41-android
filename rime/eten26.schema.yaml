@@ -1,0 +1,70 @@
+# Rime schema: 倚天26鍵 (忘形)
+# encoding: utf-8
+#
+# 以英文字母鍵盤輸入注音, 採用倚天26鍵(忘形)排列。
+# 鍵盤上顯示的是英文字母, 背後按忘形對應轉成注音選字。
+# v1: 不含聲調 (與多數手機注音輸入習慣相同)。
+
+schema:
+  schema_id: eten26
+  name: 倚天26鍵
+  version: "0.1"
+  author: 阿喵
+  description: |
+    以英文字母鍵盤輸入注音, 採用倚天26鍵(忘形)排列。
+    不需看注音符號, 直接按熟記的字母鍵位置盲打, 支援整句輸入。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: simplification
+    reset: 1
+    states: [ 漢字, 汉字 ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyz1234567890,./;'-=
+  initials: abcdefghijklmnopqrstuvwxyz1234567890,./;'-=
+  finals: ""
+  delimiter: ""
+
+translator:
+  dictionary: eten26
+  enable_completion: true
+  enable_sentence: true
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
